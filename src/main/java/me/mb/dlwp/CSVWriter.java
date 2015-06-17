@@ -26,9 +26,9 @@ public class CSVWriter {
 
 		StringBuilder output = new StringBuilder();
 		Joiner joiner = Joiner.on(builder.columnSeparator);
-		output.append(joiner.join(builder.headerNames)).append("\n");
+		output.append(joiner.join(builder.headerNames)).append(System.lineSeparator());
 		for (List<Object> row : builder.data) {
-			output.append(joiner.join(row)).append("\n");
+			output.append(joiner.join(row)).append(System.lineSeparator());
 		}
 
 		try (OutputStreamWriter osWriter = new OutputStreamWriter(outputStream);) {
@@ -37,7 +37,7 @@ public class CSVWriter {
 	}
 
 	public static class CSVParamBuilder {
-		private char columnSeparator = '\t';
+		private char columnSeparator = ',';
 		private List<String> headerNames = new LinkedList<>();
 		private List<List<Object>> data = new LinkedList<>();
 

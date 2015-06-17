@@ -65,4 +65,25 @@ public final class DataLogger {
 		pr.runScript(pythonScript, newArgs);
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder("|");
+		
+		for(String header : getHeaders()) {
+			str.append(String.format("%10s",header)).append("\t|");
+		}
+		
+		str.append("\n");
+		
+		for(List<Object> data: getData()) {
+			str.append("|");
+			for(Object datum: data) {
+				str.append(datum).append("\t|");
+			}
+			str.append("\n");			
+		}
+		
+		return str.toString();
+	}
+	
 }
