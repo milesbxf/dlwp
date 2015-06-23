@@ -30,7 +30,7 @@ public class DataLoggerTest {
 	public void initialisingSetsHeaders() {
 		new Expectations() {
 		{
-			loggable.getHeaders(); result= Lists.newArrayList("h1","h2","h3","h4");
+			loggable.getHeaders(); result= Lists.newArrayList("h1","h2","h3","h4");result= Lists.newArrayList("h1","h2","h3","h4");
 		}
 	};
 		dl = new DataLogger(loggable);
@@ -47,8 +47,8 @@ public class DataLoggerTest {
 	public void appendDataAppendsDataFromLoggable() throws Exception {
 		new Expectations() {
 			{
-				loggable.getData();result=Lists.newArrayList("test");
 				loggable.getHeaders(); result= Lists.newArrayList("h1");
+				loggable.getData();result=Lists.newArrayList("test");
 			}
 		};
 
@@ -64,8 +64,8 @@ public class DataLoggerTest {
 	public void incorrectAmountOfDataThrowsException() throws Exception {
 		new Expectations() {
 			{
+				loggable.getHeaders(); result= Lists.newArrayList("h1","h2");result= Lists.newArrayList("h1","h2");
 				loggable.getData();result=Lists.newArrayList("test");
-				loggable.getHeaders(); result= Lists.newArrayList("h1","h2");
 			}
 		};
 		dl = new DataLogger(loggable);

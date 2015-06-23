@@ -115,9 +115,12 @@ public class PythonRunnerTest {
 	public void callingScriptWithArgsIsParsedCorrectly() throws IOException, PythonException {
 		new Expectations() {
 			{
+				file = new File(anyString);
 				file.exists();
 				result = true;
-				new ProcessBuilder("python", "file firstArg secondArg");
+				new ProcessBuilder("python", "file", "firstArg", "secondArg");
+				pb.inheritIO();
+				pb.start();
 			}
 		};
 		PythonRunner pr = new PythonRunner();
